@@ -1,0 +1,41 @@
+<%= form_tag({:action => :upload}, :multipart => true ) do %>
+	<%= file_field_tag 'invoice' %>
+	<%= submit_tag("Прочитать", class: "button" ) %>
+<% end %>
+
+
+<div class="row">
+  <div class="large-12 colum panel">
+    <table class="table table-hover">
+      <thead>
+          <tr>
+          <th>Номер</th>
+          <th>Дата</th>
+          <th>Сумма</th>
+          <th>ИНН</th>
+        </tr>
+        <tbody>
+          <% @docunemts.each do |docunemt| %>
+            <tr>
+              <td>
+                <%= docunemt.number %>
+              </td>
+              <td>
+                <%= docunemt.date %>
+              </td>
+              <td>
+                <%= docunemt.sum %>
+              </td>
+              <td>
+                <%= docunemt.inn %>
+              </td>
+              <td>
+                <%=  link_to 'Показать', phone_path(docunemt), method: :get %>
+              </td>
+            </tr>
+          <% end %> 
+        </tbody>
+      </thead>
+
+</table>
+  </div>
