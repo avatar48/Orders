@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'invoices/list'
+
+  get 'documets/show'
+
   get 'orders/edit'
 
   get 'orders/list'

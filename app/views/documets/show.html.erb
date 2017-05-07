@@ -1,0 +1,34 @@
+
+<div class="row">
+  <div class="large-12 colum panel">
+    <table class="table table-hover">
+      <thead>
+          <tr>
+          <th>Номенклатура</th>
+          <th>Количество</th>
+          <th>Цена</th>
+          <th>Ед.изм.</th>
+        </tr>
+        <tbody>
+          <% @lineitems.each do |lineitem| %>
+            <tr>
+              <td>
+                <%= lineitem.product_name %>
+              </td>
+              <td>
+                <%= lineitem.quantity %>
+              </td>
+              <td>
+                <%= lineitem.price %>
+              </td>
+              <td>
+                <%= lineitem.unit %>
+              </td>
+
+            </tr>
+          <% end %> 
+        </tbody>
+      </thead>
+
+</table>
+  </div>
