@@ -1,7 +1,14 @@
-<%= form_tag({:action => :upload}, :multipart => true ) do %>
+<div class="row">
+	
+	<%= form_tag({:action => :upload}, :multipart => true ) do %>
+	<div class="large-12 colum panel">
 	<%= file_field_tag 'invoice' %>
-	<%= submit_tag("Прочитать", class: "button" ) %>
+	<%= submit_tag("Прочитать", class: "button success radius small" ) %>
+	</div>
 <% end %>
+	
+</div>
+
 
 
 <div class="row">
@@ -27,7 +34,9 @@
                 <%= docunemt.sum %>
               </td>
               <td>
-                <%= docunemt.inn %>
+              	<span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="ddddd">
+                	<%= docunemt.inn %>
+                </span>
               </td>
               <td>
                 <%=  link_to 'Показать', documets_show_path(docunemt), method: :get %>

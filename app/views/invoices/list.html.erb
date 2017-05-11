@@ -1,2 +1,47 @@
-<h1>Invoices#list</h1>
-<p>Find me in app/views/invoices/list.html.erb</p>
+<div class="row">
+	
+<%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
+	<div class="large-12 colum panel">
+	<%= file_field_tag 'invoice' %>
+	<%= submit_tag("Прочитать", class: "button" ) %>
+	</div>
+<% end %>
+</div>
+
+
+<div class="row">
+  <div class="large-12 colum panel">
+    <table class="table table-hover">
+      <thead>
+          <tr>
+          <th>Номер</th>
+          <th>Дата</th>
+          <th>Сумма</th>
+          <th>ИНН</th>
+        </tr>
+        <tbody>
+          <% @invoices.each do |invoice| %>
+            <tr>
+              <td>
+                <%= invoice.number %>
+              </td>
+              <td>
+                <%= invoice.date %>
+              </td>
+              <td>
+                <%= invoice.sum %>
+              </td>
+              <td>
+                <%= invoice.buyer_inn %>
+              </td>
+              <td>
+                <%=  link_to 'Показать', invoices_edit_path(invoice), method: :get %>
+              </td>
+
+            </tr>
+          <% end %> 
+        </tbody>
+      </thead>
+
+</table>
+  </div>

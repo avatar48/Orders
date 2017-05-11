@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504134709) do
+ActiveRecord::Schema.define(version: 20170507141225) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "number"
@@ -25,6 +25,31 @@ ActiveRecord::Schema.define(version: 20170504134709) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoice_line_items", force: :cascade do |t|
+    t.string   "product_name"
+    t.string   "product_code"
+    t.integer  "quantity"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.string   "unit"
+    t.integer  "partner_code"
+    t.integer  "invoice_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["invoice_id"], name: "index_invoice_line_items_on_invoice_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string   "number"
+    t.date     "date"
+    t.decimal  "sum",                   precision: 8, scale: 2
+    t.string   "seller_inn", limit: 10
+    t.string   "saler_kpp",  limit: 10
+    t.string   "buyer_inn",  limit: 10
+    t.string   "buyer_kpp",  limit: 10
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "lineitems", force: :cascade do |t|
