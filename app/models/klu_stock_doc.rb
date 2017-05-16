@@ -1,0 +1,2 @@
+class KluStockDoc < ApplicationRecord
+end

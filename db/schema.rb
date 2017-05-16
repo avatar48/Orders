@@ -10,22 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507141225) do
-
-  create_table "documents", force: :cascade do |t|
-    t.string   "number"
-    t.date     "date"
-    t.decimal  "sum",                   precision: 8, scale: 2
-    t.integer  "inn",        limit: 10
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-  end
-
-  create_table "files_ins", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170512064837) do
 
   create_table "invoice_line_items", force: :cascade do |t|
     t.string   "product_name"
@@ -33,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170507141225) do
     t.integer  "quantity"
     t.decimal  "price",        precision: 8, scale: 2
     t.string   "unit"
-    t.integer  "partner_code"
+    t.string   "partner_code"
     t.integer  "invoice_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
@@ -52,16 +37,26 @@ ActiveRecord::Schema.define(version: 20170507141225) do
     t.datetime "updated_at",                                    null: false
   end
 
-  create_table "lineitems", force: :cascade do |t|
+  create_table "stocks", force: :cascade do |t|
+    t.string   "number"
+    t.boolean  "sent"
+    t.date     "date"
+    t.decimal  "sum",                   precision: 8, scale: 2
+    t.integer  "inn",        limit: 10
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  create_table "stocks_line_items", force: :cascade do |t|
     t.string   "product_name"
+    t.string   "unit"
     t.integer  "quantity"
     t.decimal  "price",        precision: 8, scale: 2
-    t.string   "unit"
     t.integer  "code_contr"
-    t.integer  "document_id"
+    t.integer  "stock_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.index ["document_id"], name: "index_lineitems_on_document_id"
+    t.index ["stock_id"], name: "index_stocks_line_items_on_stock_id"
   end
 
 end

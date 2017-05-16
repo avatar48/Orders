@@ -1,6 +1,6 @@
 <div class="row">
 	
-	<%= form_tag({:action => :upload}, :multipart => true ) do %>
+	<%= form_tag({:action => :upload_stock}, :multipart => true ) do %>
 	<div class="large-12 colum panel">
 	<%= file_field_tag 'invoice' %>
 	<%= submit_tag("Прочитать", class: "button success radius small" ) %>
@@ -39,7 +39,7 @@
                 </span>
               </td>
               <td>
-                <%=  link_to 'Показать', documets_show_path(docunemt), method: :get %>
+                <%=  link_to 'Показать', stocks_edit_path(docunemt), method: :get %>
               </td>
             </tr>
           <% end %> 

@@ -3,7 +3,7 @@
 <%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
 	<div class="large-12 colum panel">
 	<%= file_field_tag 'invoice' %>
-	<%= submit_tag("Прочитать", class: "button" ) %>
+	<%= submit_tag("Прочитать", class: "button success radius small" ) %>
 	</div>
 <% end %>
 </div>
@@ -37,7 +37,9 @@
               <td>
                 <%=  link_to 'Показать', invoices_edit_path(invoice), method: :get %>
               </td>
-
+              <td>
+                <%=  link_to 'Отправить', send_invoice_path(invoice), method: :post %>
+              </td>
             </tr>
           <% end %> 
         </tbody>

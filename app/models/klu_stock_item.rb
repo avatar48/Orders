@@ -1,0 +1,2 @@
+class KluStockItem < ApplicationRecord
+end

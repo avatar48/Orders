@@ -6,7 +6,7 @@ class CreateInvoiceLineItems < ActiveRecord::Migration[5.0]
       t.integer :quantity
       t.decimal :price, precision: 8, scale: 2
       t.string :unit
-      t.integer :partner_code
+      t.string :partner_code
       t.references :invoice, foreign_key: true
 
       t.timestamps
