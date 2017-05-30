@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UnityTest < ActiveSupport::TestCase
+class DepotTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
