@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#gem 'dotenv', '~> 2.2', '>= 2.2.1'
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 
