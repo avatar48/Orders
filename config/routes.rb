@@ -8,19 +8,18 @@ Rails.application.routes.draw do
   get 'invoices/list'
   get 'invoices/edit'
  
-
-
   root 'stocks#list'
 
   controller :stocks do  
     post 'upload_stock' => :upload_stock
-
+    post 'send_stock' => :send_stock
   end
 
   controller :invoices do  
     post 'upload_invoice' => :upload_invoice
     post 'send_invoice' => :send_invoice
   end
+
   controller :leftovers do  
     post 'send_leftovers' => :send_leftovers
   end

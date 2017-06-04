@@ -16,6 +16,7 @@
           <th>Сумма</th>
           <th>ИНН</th>
           <th>Парметры</th>
+          <th>Действие</th>
         </tr>
         <tbody>
           <% @docunemts.each do |docunemt| %>
@@ -36,6 +37,9 @@
               </td>
               <td>
                 <%=  link_to 'Показать', stocks_edit_path(docunemt), method: :get %>
+              </td>
+              <td>
+                <%=  link_to 'Отправить', send_stock_path(docunemt), method: :post %>
               </td>
             </tr>
           <% end %> 

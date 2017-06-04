@@ -1,7 +1,16 @@
 class StocksController < ApplicationController
- def list
+  def list
   	@docunemts = Stock.all
   end
+
+  def send_stock
+    doc = Stock.find(params[:format])
+    KluStockDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :FIRMA_AD => "dsds")
+    @lines =  KluStockItem.where(:stock_id => params[:format])
+    @lines.each do |line|
+      KluStockItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
+    end
+  end  
 
   def upload_stock
   	uploaded_io = params[:invoice]
@@ -9,11 +18,11 @@ class StocksController < ApplicationController
         redirect_to stocks_list_url, notice: "Выберите файл"
         return
     end
-	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
 	    file.write(uploaded_io.read)
 	    #byebug
 	    doc = File.open(uploaded_io.path) { |f| Nokogiri::XML(f) }
-	 	doc.xpath("//Шапка//Документ").map.each do |s|
+	 	  doc.xpath("//Шапка//Документ").map.each do |s|
 	 		document = Stock.new
 	 		document.number = s['НомерВходящий']
 	 		document.date = s['ДатаВходящий']
@@ -29,7 +38,7 @@ class StocksController < ApplicationController
       			lineitem.stock_id = document.id
       			lineitem.price = c['Цена']
 				lineitem.save
-   			end
+   		end
 	 	end
 	end
 	redirect_to stocks_list_url
@@ -38,4 +47,6 @@ class StocksController < ApplicationController
   def edit
   	@lineitems = StocksLineItem.where(:stock_id => params[:format])
   end
+
+
 end
