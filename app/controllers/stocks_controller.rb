@@ -1,4 +1,6 @@
 class StocksController < ApplicationController
+  before_filter :authenticate_user!
+
   def list
   	@docunemts = Stock.all
   end

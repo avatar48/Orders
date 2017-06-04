@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 #gem 'dotenv', '~> 2.2', '>= 2.2.1'
 gem 'dotenv-rails', groups: [:development, :test]
 

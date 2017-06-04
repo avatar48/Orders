@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get 'persons/profile'
+
   get 'leftovers/send'
 
   get 'stocks/list'
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
   get 'invoices/edit'
  
   root 'stocks#list'
+  
+  get 'persons/profile', as: 'user_root'
 
   controller :stocks do  
     post 'upload_stock' => :upload_stock
