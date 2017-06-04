@@ -1,16 +1,11 @@
-<div class="row">
-	
-<%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
-	<div class="large-12 colum panel">
-	<%= file_field_tag 'invoice' %>
-	<%= submit_tag("Прочитать", class: "button tiny radius" ) %>
-	</div>
+<% content_for :sidebar do %>
+  <%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
+  	<%= file_field_tag 'invoice' %>
+  	<%= submit_tag("Прочитать", class: "button tiny radius" ) %>
+  <% end %>
 <% end %>
-</div>
 
 
-<div class="row">
-  <div class="large-12 colum panel">
     <table class="table table-hover">
       <thead>
           <tr>
@@ -18,6 +13,8 @@
           <th>Дата</th>
           <th>Сумма</th>
           <th>ИНН</th>
+          <th>Парметры</th>
+          <th>Действие</th>
         </tr>
         <tbody>
           <% @invoices.each do |invoice| %>
@@ -46,4 +43,3 @@
       </thead>
 
 </table>
-  </div>

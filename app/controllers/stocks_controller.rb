@@ -4,7 +4,11 @@ class StocksController < ApplicationController
   end
 
   def upload_stock
-	uploaded_io = params[:invoice]
+  	uploaded_io = params[:invoice]
+  	if uploaded_io.nil? 
+        redirect_to stocks_list_url, notice: "Выберите файл"
+        return
+    end
 	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
 	    file.write(uploaded_io.read)
 	    #byebug
@@ -25,9 +29,7 @@ class StocksController < ApplicationController
       			lineitem.stock_id = document.id
       			lineitem.price = c['Цена']
 				lineitem.save
-
    			end
-
 	 	end
 	end
 	redirect_to stocks_list_url

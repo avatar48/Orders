@@ -20,6 +20,10 @@ class InvoicesController < ApplicationController
 
   def upload_invoice
   	uploaded_io = params[:invoice]
+    if uploaded_io.nil? 
+        redirect_to invoices_list_url, notice: "Выберите файл"
+        return
+    end
   	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
   	    file.write(uploaded_io.read)
   	    #byebug

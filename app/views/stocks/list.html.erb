@@ -1,18 +1,21 @@
-<div class="row">
-  <div class="small-2 colum ">
+
+<% content_for :sidebar do %>
+
     <%= form_tag({:action => :upload_stock}, :multipart => true ) do %>
     <%= file_field_tag 'invoice' %>
     <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
     <% end %>
-  </div>
-  <div class="small-9 colum panel">
-    <table class="table table-hover">
+<% end %>
+
+
+    <table class="hover">
       <thead>
           <tr>
           <th>Номер</th>
           <th>Дата</th>
           <th>Сумма</th>
           <th>ИНН</th>
+          <th>Парметры</th>
         </tr>
         <tbody>
           <% @docunemts.each do |docunemt| %>
@@ -39,6 +42,3 @@
         </tbody>
       </thead>
     </table>
-  </div>
-
-</div>

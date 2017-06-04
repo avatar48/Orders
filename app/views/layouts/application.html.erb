@@ -15,11 +15,20 @@
 
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-
-    
+    <br>
+    <div class="row">
+      <div class="large-8 columns">  
        <%= render 'layouts/messages' %>
        <%= yield %>
-    </main>
+      </div>
+      <div class="large-4 columns">
+        <%= yield :sidebar %>
+      </div>
+
+    </div>
+
+
+
+
   </body>
 </html>
