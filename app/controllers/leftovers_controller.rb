@@ -1,5 +1,5 @@
 class LeftoversController < ApplicationController
-  
+  before_filter :authenticate_user! 
   def send_leftovers
   	@a = TinyTds::Client.new(:adapter => "sqlserver", :host => ENV['HOST'], :username => ENV['USN'], :password => ENV['PAS'], :database => ENV['DB'])
 	data = "#{params[:start_date][:day].to_i}.#{params[:start_date][:month].to_i}.#{params[:start_date][:year].to_i}"

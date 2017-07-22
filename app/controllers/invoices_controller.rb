@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_filter :authenticate_user!
   def list
   	@invoices = Invoice.all
   end

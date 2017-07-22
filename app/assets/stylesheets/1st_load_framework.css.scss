@@ -10,6 +10,11 @@
   color: white;
   padding: 0 15px; }
 
+.top-bar .name span {
+  font-weight: normal;
+  color: white;
+  padding: 0 15px; }
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
 @mixin twelve-columns {

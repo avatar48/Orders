@@ -4,8 +4,23 @@
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
   <div class="top-bar-section">
-    <ul>
+  <div class="large-8 columns">
+  	    <ul>
       <%= render 'layouts/navigation_links' %>
     </ul>
+  </div>
+  <div class="large-4 columns last">
+  	<ul>
+    	<% if user_signed_in? %>
+      <li class="name"><span>Здравствуйте, <%= current_user.fullname %></span></li>
+    <li class="name"><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+    <li class="name"><%= link_to 'Войти', new_user_session_path %> </li>
+    <!-- <li class="name"><%= link_to 'Зарегистрироваться', new_user_registration_path %> </li> -->
+    <% end %>
+    </ul>
+  </div>
+
+    
   </div>
 </nav>
