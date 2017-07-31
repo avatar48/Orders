@@ -4,7 +4,6 @@ class LeftoversController < ApplicationController
 	datato1c = Time.new(params[:start_date][:year].to_i,params[:start_date][:month].to_i,params[:start_date][:day].to_i,23,59,59).strftime("%Y%m%d%H%M%S")
 	conn = Faraday.new "http://192.168.1.25/testalena/hs/ostatki/list/#{datato1c}"
 	conn.basic_auth(ENV['USN'], ENV['PAS'])
-	byebug
 	body = conn.get.body
 	result = JSON.parse(body)
 	data = "#{params[:start_date][:day].to_i}.#{params[:start_date][:month].to_i}.#{params[:start_date][:year].to_i}"
