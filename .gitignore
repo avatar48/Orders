@@ -19,6 +19,7 @@
 /config/secrets.yml
 config/secrets.yml
 config/database.yml
+vendor/gem
 
 .byebug_history
 .env
