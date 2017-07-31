@@ -9,7 +9,7 @@
 				    <h5>Дата остатков:</h5>
 				    </div>
 				    <div class="large-5 columns select-date-wrapper">
-						<%= select_date(Date.today-1.day, {prefix: :start_date}, { :class => "select-date" }) %>
+						<%= select_date(Date.today-1.day, options = {prefix: :start_date, order: [:year, :month, :day], discard_type: true }, { :class => "select-date" }) %>
 				    </div>
 			</div>
 		  	<%= submit_tag("Отправить", class: "button" ) %>
