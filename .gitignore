@@ -18,6 +18,7 @@
 config/deploy.rb 
 /config/deploy
 /public
+/shared/*
 
 .byebug_history
 .env
