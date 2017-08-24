@@ -17,7 +17,6 @@
 /tmp
 /config/secrets.yml
 config/secrets.yml
-config/database.yml
 config/deploy.rb 
 /config/deploy
 /public
