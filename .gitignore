@@ -15,11 +15,12 @@
 /log/*
 !/log/.keep
 /tmp
-/config/database.yml
 /config/secrets.yml
 config/secrets.yml
 config/database.yml
-vendor/gem
+config/deploy.rb 
+/config/deploy
+/public
 
 .byebug_history
 .env
