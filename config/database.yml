@@ -27,9 +27,6 @@ production:
   username: <%= ENV['USRMYSQL'] %>
   password: <%= ENV['PWMYSQL'] %>
 
-  <<: *default
-  database: db/production.sqlite3
-
 mssql:
   adapter: sqlserver
   database: unitest
