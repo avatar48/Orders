@@ -4,7 +4,7 @@ gem 'awesome_print', '~> 1.8'
 gem 'faraday', '~> 0.12.2'
 gem 'devise'
 #gem 'dotenv', '~> 2.2', '>= 2.2.1'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 
 gem 'unicorn', '~> 5.3'
 
