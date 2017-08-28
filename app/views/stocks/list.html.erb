@@ -1,11 +1,18 @@
 
 <% content_for :sidebar do %>
 
-    <%= form_tag({:action => :upload_stock}, :multipart => true ) do %>
+    <%= form_tag({:action => :upload_stock}, :multipart => true, :remote => true, :authenticity_token => true ) do %>
     <%= file_field_tag 'invoice' %>
     <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
     <% end %>
 <% end %>
+
+<div class="row">
+  <div class="large-12 columns align-center">
+    <div id="show_list"> </div>   
+  </div>
+</div>
+
 
 
     <table class="hover">

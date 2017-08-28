@@ -27,31 +27,11 @@ class InvoicesController < ApplicationController
     end
   	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
   	    file.write(uploaded_io.read)
-  	    #byebug
-  	    doc = File.open(uploaded_io.path) { |f| Nokogiri::XML(f) }
-        doc.xpath("//Шапка//Документ").map.each do |s|
-          document = Invoice.new
-          document.number = s['Номер']
-          document.date = s['Дата']
-          document.sum = s['СуммаДокумента']
-          document.seller_inn = s['ИННПродавец']
-          document.saler_kpp = s['КПППродавец']
-          document.buyer_inn = s['ИННПокупатель']
-          document.buyer_kpp = s['КПППокупатель']
-          document.save
-          s.xpath("//СтрокаТовары").map.each do |c|
-              lineitem = InvoiceLineItem.new
-              lineitem.product_code = c['НоменклатураКод']
-              lineitem.product_name = c['НоменклатураНаименование']
-              lineitem.quantity = c['Количество']
-              lineitem.unit = c['ЕдиницаИзмеренияНаименование']
-              lineitem.partner_code = c['КодКонтрагента']
-              lineitem.price = c['Цена']
-              lineitem.invoice_id = document.id
-              lineitem.save
-       		   end
-  	 	   end
-  	end
-    redirect_to invoices_list_url
+    end
+        respond_to do |format|
+          ParseFileJob.perform_later uploaded_io.path
+          format.html {redirect_to invoices_list_url}
+          format.js 
+        end
   end
 end

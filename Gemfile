@@ -6,7 +6,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'mysql2', '~> 0.4.9'
 gem 'unicorn', '~> 5.3'
-
+gem 'sidekiq', '~> 5.0', '>= 5.0.4'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 

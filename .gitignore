@@ -19,6 +19,6 @@ config/deploy.rb
 /config/deploy
 /public
 /shared/*
-
+/vendor/*
 .byebug_history
 .env
