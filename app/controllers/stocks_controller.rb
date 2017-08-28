@@ -2,11 +2,10 @@ class StocksController < ApplicationController
   before_filter :authenticate_user!
 
   def list
-        @docunemts = Stock.all
+    @docunemts = Stock.all
   end
 
   def send_stock
-
     doc = Stock.find(params[:format])
     doclg = KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
     @lines =  StocksLineItem.select("code_contr, product_name, sum(quantity) as quantity, price").where(:stock_id => params[:format]).group(:product_name)
@@ -25,15 +24,14 @@ class StocksController < ApplicationController
 
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
             file.write(uploaded_io.read)
-            
         end
 
     respond_to do |format|
-        ParseFileJob.perform_later uploaded_io.path
+        ParseStokFileJob.perform_later(uploaded_io.path)
         format.html {redirect_to stocks_list_url}
         format.js 
     end
-        # redirect_to stocks_list_url
+
   end
 
   def edit

@@ -5,9 +5,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-
   	@lineitems = InvoiceLineItem.where(:invoice_id => params[:format])
-  	
   end
 
   def send_invoice
@@ -25,13 +23,15 @@ class InvoicesController < ApplicationController
         redirect_to invoices_list_url, notice: "Выберите файл"
         return
     end
-  	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+  	
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
   	    file.write(uploaded_io.read)
     end
-        respond_to do |format|
-          ParseFileJob.perform_later uploaded_io.path
-          format.html {redirect_to invoices_list_url}
-          format.js 
-        end
+
+    respond_to do |format|
+      ParseInvoiceFileJob.perform_later(uploaded_io.path)
+      format.html {redirect_to invoices_list_url}
+      format.js 
+    end  
   end
 end
