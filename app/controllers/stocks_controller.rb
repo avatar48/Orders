@@ -7,7 +7,7 @@ class StocksController < ApplicationController
 
   def send_stock
     doc = Stock.find(params[:format])
-    doclg = KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
+    doclg = KluInvoiceDoc.create( :FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
     @lines =  StocksLineItem.select("code_contr, product_name, sum(quantity) as quantity, price").where(:stock_id => params[:format]).group(:product_name)
     @lines.each do |line|
       price = line.price || 0
