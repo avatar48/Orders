@@ -23,13 +23,14 @@ class InvoicesController < ApplicationController
         redirect_to invoices_list_url, notice: "Выберите файл"
         return
     end
-  	
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    
+    filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+    
+    File.open(filename, 'wb') do |file|
   	    file.write(uploaded_io.read)
     end
-
-    respond_to do |format|
-      ParseInvoiceFileJob.perform_later(uploaded_io.path)
+    ParseInvoiceFileJob.perform_later(filename.to_s)
+    respond_to do |format|   
       format.html {redirect_to invoices_list_url}
       format.js 
     end  

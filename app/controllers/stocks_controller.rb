@@ -22,12 +22,14 @@ class StocksController < ApplicationController
     return
     end
 
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+
+    File.open(filename, 'wb') do |file|
             file.write(uploaded_io.read)
         end
-
+    ParseStokFileJob.perform_later(filename.to_s)
+    
     respond_to do |format|
-        ParseStokFileJob.perform_later(uploaded_io.path)
         format.html {redirect_to stocks_list_url}
         format.js 
     end
