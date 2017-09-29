@@ -4,14 +4,18 @@
     <table class="table table-hover">
       <thead>
           <tr>
+          <th>№ п/п</th>
           <th>Номенклатура</th>
           <th>Количество</th>
           <th>Цена</th>
           <th>Ед.изм.</th>
         </tr>
         <tbody>
-          <% @lineitems.each do |lineitem| %>
+          <% @lineitems.each_with_index do |lineitem, index| %>
             <tr>
+              <td>
+                <%= index %>
+              </td>
               <td>
                 <%= lineitem.product_name %>
               </td>

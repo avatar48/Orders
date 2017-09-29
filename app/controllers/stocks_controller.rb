@@ -2,7 +2,7 @@ class StocksController < ApplicationController
   before_filter :authenticate_user!
 
   def list
-    @docunemts = Stock.all
+    @docunemts = Stock.order('number')
   end
 
   def send_stock
