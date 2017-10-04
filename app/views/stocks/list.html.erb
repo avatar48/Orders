@@ -22,6 +22,7 @@
           <th>Дата</th>
           <th>Сумма</th>
           <th>ИНН</th>
+          <th>Статус</th>
           <th>Парметры</th>
           <th>Действие</th>
         </tr>
@@ -41,6 +42,9 @@
               	<span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="ddddd">
                 	<%= docunemt.inn %>
                 </span>
+              </td>
+              <td>
+                <%= send_or_not(docunemt.send_cheker) %>
               </td>
               <td>
                 <%=  link_to 'Показать', stocks_edit_path(docunemt), method: :get %>

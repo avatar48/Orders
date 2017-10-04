@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604202835) do
+ActiveRecord::Schema.define(version: 20171004130257) do
 
   create_table "invoice_line_items", force: :cascade do |t|
     t.string   "product_name"
@@ -28,23 +28,25 @@ ActiveRecord::Schema.define(version: 20170604202835) do
   create_table "invoices", force: :cascade do |t|
     t.string   "number"
     t.date     "date"
-    t.decimal  "sum",                   precision: 8, scale: 2
-    t.string   "seller_inn", limit: 10
-    t.string   "saler_kpp",  limit: 10
-    t.string   "buyer_inn",  limit: 10
-    t.string   "buyer_kpp",  limit: 10
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.decimal  "sum",                    precision: 8, scale: 2
+    t.string   "seller_inn",  limit: 10
+    t.string   "saler_kpp",   limit: 10
+    t.string   "buyer_inn",   limit: 10
+    t.string   "buyer_kpp",   limit: 10
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "send_cheker"
   end
 
   create_table "stocks", force: :cascade do |t|
     t.string   "number"
     t.boolean  "sent"
     t.date     "date"
-    t.decimal  "sum",                   precision: 8, scale: 2
-    t.integer  "inn",        limit: 10
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.decimal  "sum",                    precision: 8, scale: 2
+    t.integer  "inn",         limit: 10
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "send_cheker"
   end
 
   create_table "stocks_line_items", force: :cascade do |t|

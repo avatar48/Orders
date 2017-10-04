@@ -13,6 +13,8 @@ class StocksController < ApplicationController
       price = line.price || 0
       KluInvoiceItem.create(:CODE => line.code_contr, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => price, :TOPLAM =>  price * line.quantity, :FISCODE => doc.number )
     end
+    doc.update_attribute(:send_cheker, true)
+    redirect_to stocks_list_url
   end
 
   def upload_stock

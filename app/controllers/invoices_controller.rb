@@ -15,6 +15,8 @@ class InvoicesController < ApplicationController
     @lines.each do |line|
       KluInvoiceItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
     end
+    doc.update_attribute(:send_cheker, true)
+    redirect_to invoices_list_url
   end
 
   def upload_invoice
