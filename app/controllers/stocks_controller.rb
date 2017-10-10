@@ -7,14 +7,18 @@ class StocksController < ApplicationController
 
   def send_stock
     doc = Stock.find(params[:format])
-    doclg = KluInvoiceDoc.create( :FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
-    @lines =  StocksLineItem.select("code_contr, product_name, sum(quantity) as quantity, price").where(:stock_id => params[:format]).group(:product_name)
-    @lines.each do |line|
-      price = line.price || 0
-      KluInvoiceItem.create(:CODE => line.code_contr, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => price, :TOPLAM =>  price * line.quantity, :FISCODE => doc.number )
+    if !doc.send_cheker
+      doclg = KluInvoiceDoc.create( :FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
+      @lines =  StocksLineItem.select("code_contr, product_name, sum(quantity) as quantity, price").where(:stock_id => params[:format]).group(:product_name)
+      @lines.each do |line|
+        price = line.price || 0
+        KluInvoiceItem.create(:CODE => line.code_contr, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => price, :TOPLAM =>  price * line.quantity, :FISCODE => doc.number )
+      end
+      doc.update_attribute(:send_cheker, true)
+      redirect_to stocks_list_url
+    else
+      redirect_to stocks_list_url, notice: "Заявка на перемещение #{doc.number} уже отправлена"
     end
-    doc.update_attribute(:send_cheker, true)
-    redirect_to stocks_list_url
   end
 
   def upload_stock

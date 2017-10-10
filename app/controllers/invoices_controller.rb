@@ -10,13 +10,17 @@ class InvoicesController < ApplicationController
 
   def send_invoice
     doc = Invoice.find(params[:format])
-    KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => doc.buyer_inn, :KPP => doc.buyer_kpp)
-    @lines =  InvoiceLineItem.select("id, product_name, product_code, sum(quantity) as quantity, price, unit, partner_code").where(:invoice_id => params[:format]).group(:product_name)
-    @lines.each do |line|
-      KluInvoiceItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
+    if !doc.send_cheker
+      KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => doc.buyer_inn, :KPP => doc.buyer_kpp)
+      @lines =  InvoiceLineItem.select("id, product_name, product_code, sum(quantity) as quantity, price, unit, partner_code").where(:invoice_id => params[:format]).group(:product_name)
+      @lines.each do |line|
+        KluInvoiceItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
+      end
+      doc.update_attribute(:send_cheker, true)
+      redirect_to invoices_list_url
+    else
+      redirect_to invoices_list_url, notice: "Реализация #{doc.number} уже отправлена"
     end
-    doc.update_attribute(:send_cheker, true)
-    redirect_to invoices_list_url
   end
 
   def upload_invoice

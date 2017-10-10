@@ -14,7 +14,7 @@
           <% @lineitems.each_with_index do |lineitem, index| %>
             <tr>
               <td>
-                <%= index %>
+                <%= index.next %>
               </td>
               <td>
                 <%= lineitem.product_name %>
