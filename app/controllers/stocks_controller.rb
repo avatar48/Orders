@@ -1,8 +1,14 @@
 class StocksController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_document, only: [:show, :update, :destroy]
+  before_action :set_lineitems, only: :show
 
-  def list
+  def index
     @docunemts = Stock.order('number')
+    respond_to do |format|
+      format.html
+
+    end
   end
 
   def send_stock
@@ -42,9 +48,22 @@ class StocksController < ApplicationController
 
   end
 
-  def edit
-        @lineitems = StocksLineItem.where(:stock_id => params[:format])
+  def show
+    respond_to do |format|
+      format.html 
+      format.xlsx {render xlsx: 'download',filename: "#{@document.number}.xlsx"}
+  end
+    
   end
 
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Stock.find(params[:id])
+  end
+
+  def set_lineitems
+    @lineitems = StocksLineItem.where(:stock_id => params[:id])
+  end
 
 end

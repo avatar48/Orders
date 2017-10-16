@@ -3,15 +3,12 @@ Rails.application.routes.draw do
   get 'persons/profile'
 
   get 'leftovers/send'
-
-  get 'stocks/list'
-
-  get 'stocks/edit'
-
   get 'invoices/list'
   get 'invoices/edit'
+
+  resources :stocks, expect: [:index, :show]
  
-  root 'stocks#list'
+  root 'stocks#index'
   
   get 'persons/profile', as: 'user_root'
 

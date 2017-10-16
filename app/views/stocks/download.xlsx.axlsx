@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Перемещение на склад") do |sheet|
+    style1 = sheet.styles.add_style(:bg_color => "EF0920", :fg_color => "FFFFFF")
+    sheet.add_row ["Наименование", "Количество","Цена","Единица измерения"], :style=>style1
+    @lineitems.each do |payment|
+        sheet.add_row [payment.product_name, payment.quantity,payment.price,payment.unit]
+    end
+end

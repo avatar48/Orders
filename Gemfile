@@ -10,11 +10,9 @@ gem 'sidekiq', '~> 5.0', '>= 5.0.4'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 gem 'listen', '~> 3.0.5'
+gem 'axlsx', '~> 2.0'
+gem "axlsx_rails"
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
 #gem 'foundation-rails'
 gem 'foundation-rails', '~> 5.5', '>= 5.5.3.2'
 

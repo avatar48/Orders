@@ -14,40 +14,38 @@
 </div>
 
 
-
     <table class="hover">
       <thead>
           <tr>
+          <th>Дата</th>          
           <th>Номер</th>
-          <th>Дата</th>
           <th>Сумма</th>
-          <th>ИНН</th>
           <th>Статус</th>
           <th>Парметры</th>
+          <th>Экспорт</th>
           <th>Действие</th>
         </tr>
         <tbody>
           <% @docunemts.each do |docunemt| %>
             <tr>
               <td>
-                <%= docunemt.number %>
+                <%= docunemt.date.strftime("%d.%m.%Y") %>
               </td>
               <td>
-                <%= docunemt.date.strftime("%d/%m/%Y") %>
+                <%= docunemt.number %>
               </td>
               <td>
                 <%= docunemt.sum %>
               </td>
-              <td>
-              	<span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="ddddd">
-                	<%= docunemt.inn %>
-                </span>
-              </td>
+
               <td>
                 <%= send_or_not(docunemt.send_cheker) %>
               </td>
               <td>
-                <%=  link_to 'Показать', stocks_edit_path(docunemt), method: :get %>
+                <%=  link_to 'Показать', docunemt %>
+              </td>
+              <td>
+              <%= link_to "Excel", stock_url(docunemt, format: "xlsx") %>
               </td>
               <td>
                 <%=  link_to 'Отправить', send_stock_path(docunemt), method: :post %>
