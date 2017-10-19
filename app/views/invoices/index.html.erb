@@ -9,8 +9,8 @@
     <table class="table table-hover">
       <thead>
           <tr>
-          <th>Номер</th>
           <th>Дата</th>
+          <th>Номер</th>
           <th>Сумма</th>
           <th>ИНН</th>
           <th>Статус</th>
@@ -22,10 +22,10 @@
           <% @invoices.each do |invoice| %>
             <tr>
               <td>
-                <%= invoice.number %>
+                <%= invoice.date.strftime("%d.%m.%Y") %>
               </td>
               <td>
-                <%= invoice.date.strftime("%d/%m/%Y") %>
+                <%= invoice.number %>
               </td>
               <td>
                 <%= invoice.sum %>
