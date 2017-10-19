@@ -9,12 +9,11 @@ class ParseStokFileJob < ApplicationJob
         document.inn = s['ИННПокупатель']
         document.save
         s.xpath("//СтрокаТовары").map.each do |c|
-            lineitem = StocksLineItem.new
+            lineitem = document.stocks_line_items.new
             lineitem.product_name = c['НоменклатураНаименование']
             lineitem.quantity = c['Количество']
             lineitem.unit = c['ЕдиницаИзмеренияНаименование']
             lineitem.code_contr = c['КодКонтрагента']
-            lineitem.stock_id = document.id
             lineitem.price = c['Цена']
             lineitem.save
         end

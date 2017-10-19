@@ -1,3 +1,3 @@
 class Stock < ApplicationRecord
-	has_many :stockslineitem
+	has_many :stocks_line_items , dependent: :destroy
 end

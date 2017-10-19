@@ -11,7 +11,7 @@
           <th>Ед.изм.</th>
         </tr>
         <tbody>
-          <% @lineitems.each_with_index do |lineitem, index| %>
+          <% @document.stocks_line_items.each_with_index do |lineitem, index| %>
             <tr>
               <td>
                 <%= index.next %>

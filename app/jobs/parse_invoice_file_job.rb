@@ -12,7 +12,7 @@ class ParseInvoiceFileJob < ApplicationJob
         document.buyer_kpp = s['КПППокупатель']
         document.save
         s.xpath("СтрокаТовары").map.each do |c|
-            lineitem = InvoiceLineItem.new
+            lineitem = document.invoice_line_items.new
             lineitem.product_code = c['НоменклатураКод']
             lineitem.product_name = c['НоменклатураНаименование']
             lineitem.quantity = c['Количество']

@@ -1,6 +1,8 @@
 class InvoicesController < ApplicationController
   before_filter :authenticate_user!
-  def list
+  before_action :set_document, only: [:show, :update, :destroy]
+
+  def index
   	@invoices = Invoice.order('number')
   end
 
@@ -17,16 +19,16 @@ class InvoicesController < ApplicationController
         KluInvoiceItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
       end
       doc.update_attribute(:send_cheker, true)
-      redirect_to invoices_list_url
+      redirect_to invoices_url
     else
-      redirect_to invoices_list_url, notice: "Реализация #{doc.number} уже отправлена"
+      redirect_to invoices_url, notice: "Реализация #{doc.number} уже отправлена"
     end
   end
 
   def upload_invoice
   	uploaded_io = params[:invoice]
     if uploaded_io.nil? 
-        redirect_to invoices_list_url, notice: "Выберите файл"
+        redirect_to invoices_url, notice: "Выберите файл"
         return
     end
     
@@ -37,8 +39,22 @@ class InvoicesController < ApplicationController
     end
     ParseInvoiceFileJob.perform_later(filename.to_s)
     respond_to do |format|   
-      format.html {redirect_to invoices_list_url}
+      format.html {redirect_to invoices_url}
       format.js 
     end  
   end
+
+  def show
+    respond_to do |format|
+      format.html 
+      format.xlsx {render xlsx: 'download',filename: "#{@document.number}.xlsx"}
+    end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Invoice.find(params[:id])
+  end
+
 end
