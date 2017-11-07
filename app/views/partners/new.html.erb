@@ -1,0 +1,6 @@
+<%= form_for @partner do |f| %>
+Наименование: <%= f.text_field :name %>
+Инн: <%= f.text_field :inn %>
+КПП: <%= f.text_field :kpp %>
+<%= f.submit 'Создать' %>
+<% end %>

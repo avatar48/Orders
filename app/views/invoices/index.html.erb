@@ -6,48 +6,37 @@
 <% end %>
 
 
-    <table class="table table-hover" cellspacing="0" cellpadding="5" border="1" align="center">
+    <table class="display responsive no-wrap" cellspacing="0" cellpadding="5" border="1" align="center" id="table_invoice" >
       <thead>
           <tr>
-          <th>Дата</th>
-          <th>Номер</th>
-          <th>Сумма</th>
-          <th>ИНН</th>
-          <th>Статус</th>
-          <th>Параметры</th>
-          <th>Экспорт</th>
-          <th>Действие</th>
-        </tr>
-        <tbody>
-          <% @invoices.each do |invoice| %>
-            <tr>
-              <td>
-                <%= invoice.date.strftime("%d.%m.%Y") %>
-              </td>
-              <td>
-                <%= invoice.number %>
-              </td>
-              <td>
-                <%= invoice.sum %>
-              </td>
-              <td>
-                <%= invoice.buyer_inn %>
-              </td>
-              <td>
-                <%= send_or_not(invoice.send_cheker) %>
-              </td>
-              <td>
-                <%=  link_to 'Показать', invoice %>
-              </td>
-              <td>
-              <%= link_to "Excel", invoice_url(invoice, format: "xlsx") %>
-              </td>
-              <td>
-                <%=  link_to 'Отправить', send_invoice_path(invoice), method: :post %>
-              </td>
-            </tr>
-          <% end %> 
-        </tbody>
+            <th>Дата</th>
+            <th>Номер</th>
+            <th>Сумма</th>
+            <th>Контрагент</th>
+            <th>Статус</th>
+            <th>Параметры</th>
+            <th>Экспорт</th>
+            <th width="100px"></th>
+          </tr>
       </thead>
-
+      <tbody>
+        <% @invoices.each do |invoice| %>
+          <tr>
+            <td><%= invoice.date.strftime("%d.%m.%Y") %></td>
+            <td><%= invoice.number %></td>
+            <td><%= number_with_delimiter(invoice.sum, separator: " ")  %></td>
+            <td>
+              <% if invoice.partner.nil? %>
+                <%= invoice.buyer_inn %>
+              <% else %>
+                <%= invoice.partner.name %>
+              <% end %>
+            </td>
+            <td><%= send_or_not(invoice.send_cheker) %></td>
+            <td><%= link_to 'Показать', invoice %></td>
+            <td><%= link_to "Excel", invoice_url(invoice, format: "xlsx") %></td>
+            <td><%= link_to image_tag("send.png"), send_invoice_path(invoice), method: :post %></td>
+          </tr>
+        <% end %> 
+      </tbody>
 </table>

@@ -1,0 +1,26 @@
+
+
+<%= form_for(@partner) do |p| %>
+<div class="row collapse prefix-radius">
+    <div class="small-3 columns">
+        <%= p.label :name, "Наименование", class: "prefix" %>
+    </div>
+    <div class="small-9 columns">
+        <%= p.text_field (:name) %>
+    </div> 
+    <div class="small-3 columns">
+        <%= p.label :inn, "ИНН", class: "prefix" %>
+    </div>
+    <div class="small-9 columns">
+        <%= p.text_field (:inn) %>
+    </div> 
+    <div class="small-3 columns">
+        <%= p.label :kpp, "КПП", class: "prefix" %>
+    </div>
+    <div class="small-9 columns">
+        <%= p.text_field (:kpp) %>
+    </div> 
+</div>
+    <%= p.submit "Сохранить", class: "button success tiny radius" %>
+    <%= button_to  "Удалить", @partner, method: :delete, data: {confirm: "Вы уверены что хотите удалить контрагента #{@partner.name}"}, class: "button alert tiny radius" %>
+<% end %>

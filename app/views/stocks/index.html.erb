@@ -7,14 +7,7 @@
     <% end %>
 <% end %>
 
-<div class="row">
-  <div class="large-12 columns align-center">
-    <div id="show_list"> </div>   
-  </div>
-</div>
-
-
-    <table class="hover" cellspacing="0" cellpadding="5" border="1" align="center">
+    <table class="display responsive no-wrap" cellspacing="0" cellpadding="5" border="1" align="center", id="table_stock">
       <thead>
           <tr>
           <th>Дата</th>          
@@ -23,35 +16,20 @@
           <th>Статус</th>
           <th>Параметры</th>
           <th>Экспорт</th>
-          <th>Действие</th>
+          <th></th>
         </tr>
-        <tbody>
-          <% @docunemts.each do |docunemt| %>
-            <tr>
-              <td>
-                <%= docunemt.date.strftime("%d.%m.%Y") %>
-              </td>
-              <td>
-                <%= docunemt.number %>
-              </td>
-              <td>
-                <%= docunemt.sum %>
-              </td>
-
-              <td>
-                <%= send_or_not(docunemt.send_cheker) %>
-              </td>
-              <td>
-                <%=  link_to 'Показать', docunemt %>
-              </td>
-              <td>
-              <%= link_to "Excel", stock_url(docunemt, format: "xlsx") %>
-              </td>
-              <td>
-                <%=  link_to 'Отправить', send_stock_path(docunemt), method: :post %>
-              </td>
-            </tr>
-          <% end %> 
-        </tbody>
       </thead>
-    </table>
+      <tbody>
+        <% @docunemts.each do |docunemt| %>
+          <tr>
+            <td><%= docunemt.date.strftime("%d.%m.%Y") %></td>
+            <td><%= docunemt.number %></td>
+            <td><%= docunemt.sum %></td>
+            <td><%= send_or_not(docunemt.send_cheker) %></td>
+            <td><%= link_to 'Показать', docunemt %></td>
+            <td><%= link_to "Excel", stock_url(docunemt, format: "xlsx") %></td>
+            <td><%= link_to image_tag("send.png"), send_stock_path(docunemt), method: :post %></td>
+          </tr>
+        <% end %> 
+      </tbody>
+  </table>

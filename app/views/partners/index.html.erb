@@ -1,0 +1,23 @@
+<% content_for :sidebar do %>
+    <%= button_to "Добавить контрагента", new_partner_path, method: :get, class: "button tiny radius" %>
+<% end %>
+
+
+<table id="table_partner">
+    <thead>
+        <tr class="first_tr">
+            <th>Наименование</th>
+            <th>ИНН</th>
+            <th>КПП</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @partners.each do |partner| %>
+            <tr data-link="<%= edit_partner_path(partner) %>">
+                <td><%= partner.name %></td>
+                <td><%= partner.inn %></td>
+                <td><%= partner.kpp %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :users
   get 'persons/profile'
 
   get 'leftovers/send'
+
+  resources :partners, expect: [:index, :show, :edit, :new, :create]
 
   resources :stocks, expect: [:index, :show]
   resources :invoices, expect: [:index, :show]

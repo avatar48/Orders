@@ -10,6 +10,7 @@ class ParseInvoiceFileJob < ApplicationJob
         document.saler_kpp = s['КПППродавец']
         document.buyer_inn = s['ИННПокупатель']
         document.buyer_kpp = s['КПППокупатель']
+        document.partner = Partner.find_by(:inn => "#{s['ИННПокупатель']}")
         document.save
         s.xpath("СтрокаТовары").map.each do |c|
             lineitem = document.invoice_line_items.new

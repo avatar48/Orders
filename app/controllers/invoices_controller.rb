@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   before_action :set_document, only: [:show, :update, :destroy]
 
   def index
-  	@invoices = Invoice.order('number')
+  	@invoices = Invoice.all
   end
 
   def edit

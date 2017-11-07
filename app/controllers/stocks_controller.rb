@@ -3,7 +3,7 @@ class StocksController < ApplicationController
   before_action :set_document, only: [:show, :update, :destroy]
 
   def index
-    @docunemts = Stock.order('number')
+    @docunemts = Stock.all
     respond_to do |format|
       format.html
 
