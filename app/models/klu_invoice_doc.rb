@@ -1,5 +1,5 @@
 class KluInvoiceDoc < ActiveRecord::Base
-	KluInvoiceDoc.establish_connection Rails.application.config.database_configuration['mssql']
-	self.table_name = 'dbo._KLUGIRISFIS'
+	KluInvoiceDoc.establish_connection Rails.application.config.database_configuration["#{Rails.env}_mssql"]
+	self.table_name = '_KLUGIRISFIS'
 
 end

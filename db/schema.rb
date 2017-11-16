@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023202700) do
+ActiveRecord::Schema.define(version: 20171114190054) do
 
   create_table "invoice_line_items", force: :cascade do |t|
     t.string   "product_name"
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20171023202700) do
     t.string   "number"
     t.boolean  "sent"
     t.date     "date"
-    t.decimal  "sum",                    precision: 8, scale: 2
+    t.decimal  "sum",                    precision: 13, scale: 2
     t.integer  "inn",         limit: 10
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.boolean  "send_cheker"
   end
 

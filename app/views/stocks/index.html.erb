@@ -15,7 +15,7 @@
           <th>Сумма</th>
           <th>Статус</th>
           <th>Параметры</th>
-          <th>Экспорт</th>
+          <th>Управление</th>
           <th></th>
         </tr>
       </thead>
@@ -27,7 +27,7 @@
             <td><%= docunemt.sum %></td>
             <td><%= send_or_not(docunemt.send_cheker) %></td>
             <td><%= link_to 'Показать', docunemt %></td>
-            <td><%= link_to "Excel", stock_url(docunemt, format: "xlsx") %></td>
+            <td><%= link_to "Удалить", docunemt, method: :delete, data: {confirm: "Вы уверены что хотите удалить документ перемещение #{docunemt.number}"} %></td>
             <td><%= link_to image_tag("send.png"), send_stock_path(docunemt), method: :post %></td>
           </tr>
         <% end %> 
