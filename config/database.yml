@@ -41,5 +41,9 @@ production_mssql:
   username: <%= ENV['USRMSSQL'] %>
   password: <%= ENV['PWMSSQL'] %>
 
-
-
+test_mssql:
+  adapter: mysql2
+  database: unibase2017test
+  host: 127.0.0.1
+  username: <%= ENV['USNMYSQL'] %>
+  password: <%= ENV['PAS'] %>

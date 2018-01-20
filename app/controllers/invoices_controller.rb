@@ -11,18 +11,11 @@ class InvoicesController < ApplicationController
   end
 
   def send_invoice
-    doc = Invoice.find(params[:format])
-    if !doc.send_cheker
-      KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => doc.buyer_inn, :KPP => doc.buyer_kpp)
-      @lines =  InvoiceLineItem.select("id, product_name, product_code, sum(quantity) as quantity, price, unit, partner_code").where(:invoice_id => params[:format]).group(:product_name)
-      @lines.each do |line|
-        KluInvoiceItem.create(:CODE => line.partner_code, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => line.price, :TOPLAM =>  line.price * line.quantity, :FISCODE => doc.number )
-      end
-      doc.update_attribute(:send_cheker, true)
-      redirect_to invoices_url
-    else
-      redirect_to invoices_url, notice: "Реализация #{doc.number} уже отправлена"
-    end
+    @document = Invoice.find(params[:format])
+    @invoice = DataMigrator.new(doc: @document)
+    @invoice.get_product_invoice
+    @invoice.send_to_mssql ? @message = 'Успешно отправлена' : @message = 'уже отправлена'
+    redirect_to invoices_url, notice: "Реализация #{@document.number} #{@message}"
   end
 
   def upload_invoice
@@ -49,6 +42,16 @@ class InvoicesController < ApplicationController
       format.html 
       format.xlsx {render xlsx: 'download',filename: "#{@document.number}.xlsx"}
     end
+  end
+
+  def destroy
+    @invoice = DataMigrator.new(doc: @document)
+    @invoice.destroy
+    @document.destroy
+    respond_to do |format|
+      format.html { redirect_to invoices_url, notice: "Документ #{@document.number} удален." }
+      format.json { head :ок }
+    end    
   end
 
   private

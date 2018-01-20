@@ -14,10 +14,10 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require "sidekiq/testing"
-
-RSpec::Sidekiq.configure do |config|
-  config.warn_when_jobs_not_processed_by_sidekiq = false
-end
+require 'factory_girl_rails'
+#RSpec::Sidekiq.configure do |config|
+#  config.warn_when_jobs_not_processed_by_sidekiq = false
+#end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

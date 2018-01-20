@@ -11,19 +11,11 @@ class StocksController < ApplicationController
   end
 
   def send_stock
-    doc = Stock.find(params[:format])
-    if !doc.send_cheker
-      doclg = KluInvoiceDoc.create( :FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => "5263112049")
-      @lines =  StocksLineItem.select("code_contr, product_name, sum(quantity) as quantity, price").where(:stock_id => params[:format]).group(:product_name)
-      @lines.each do |line|
-        price = line.price || 0
-        KluInvoiceItem.create(:CODE => line.code_contr, :NAME => line.product_name, :MIKTAR => line.quantity, :BIRIMFIYAT => price, :TOPLAM =>  price * line.quantity, :FISCODE => doc.number )
-      end
-      doc.update_attribute(:send_cheker, true)
-      redirect_to stocks_url
-    else
-      redirect_to stocks_url, notice: "Заявка на перемещение #{doc.number} уже отправлена"
-    end
+    @document = Stock.find(params[:format])
+    @stock = DataMigrator.new(doc: @document)
+    @stock.get_product_stock
+    @stock.send_to_mssql ? @message = 'Успешно отправлена' : @message = 'уже отправлена'
+    redirect_to stocks_url, notice: "Перемещение #{@document.number} #{@message}"
   end
 
   def upload_stock
@@ -55,11 +47,9 @@ class StocksController < ApplicationController
   end
 
   def destroy
+    @stock = DataMigrator.new(doc: @document)
+    @stock.destroy
     @document.destroy
-    unless @msdocument.nil? && @mslines.nil?
-      @msdocument.destroy_all
-      @mslines.destroy_all  
-    end
     respond_to do |format|
       format.html { redirect_to stocks_url, notice: "Документ #{@document.number} удален." }
       format.json { head :no_content }

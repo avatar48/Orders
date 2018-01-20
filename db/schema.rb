@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114190054) do
+ActiveRecord::Schema.define(version: 20180114192812) do
 
   create_table "invoice_line_items", force: :cascade do |t|
     t.string   "product_name"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171114190054) do
     t.string   "unit"
     t.integer  "quantity"
     t.decimal  "price",        precision: 8, scale: 2
-    t.integer  "code_contr"
+    t.integer  "partner_code"
     t.integer  "stock_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
