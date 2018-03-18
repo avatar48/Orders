@@ -23,8 +23,8 @@ class ParseStokFileJob < ApplicationJob
         doc = File.open(path) { |f| Nokogiri::XML(f) }
         doc.xpath("//Документ").map.each do |s|
             stock = Stock.find_by(:number => "#{s['Номер']}")
-            if stock.nil? and s['ИННПокупатель'] == s['ИННПродавец']                         
-                create_doc(s)   
+            if stock.nil? and s['ИННПокупатель'] == s['ИННПродавец']
+              create_doc(s)
             end
         end                
     end

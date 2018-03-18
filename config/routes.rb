@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :partners, expect: [:index, :show, :edit, :new, :create]
 
   resources :stocks, expect: [:index, :show]
-  resources :invoices, expect: [:index, :show]
+  resources :invoices, expect: [:index, :show, :delete]
  
   root 'stocks#index'
   
