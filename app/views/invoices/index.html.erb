@@ -24,7 +24,7 @@
           <tr>
             <td><%= invoice.date.strftime("%d.%m.%Y") %></td>
             <td><%= invoice.number %></td>
-            <td><%= number_with_delimiter(invoice.sum, separator: " ")  %></td>
+            <td><%= invoice.sum %></td>
             <td>
               <% if invoice.partner.nil? %>
                 <%= invoice.buyer_inn %>
