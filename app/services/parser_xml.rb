@@ -45,7 +45,7 @@ class ParserXml
     if @object == Stock
       @document.stocks_line_items.new
     elsif @object == Invoice
-     @document.invoice_line_items.new if @object == Invoice
+     @document.invoice_line_items.new
     end
   end
 

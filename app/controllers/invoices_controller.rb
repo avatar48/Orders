@@ -21,16 +21,17 @@ class InvoicesController < ApplicationController
   def upload_invoice
   	uploaded_io = params[:invoice]
     if uploaded_io.nil? 
-        redirect_to invoices_url, notice: "Выберите файл"
-        return
+      redirect_to invoices_url, notice: 'Выберите файл'
+      return
     end
     
     filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
     
     File.open(filename, 'wb') do |file|
-  	    file.write(uploaded_io.read)
+  	  file.write(uploaded_io.read)
     end
-    ParseInvoiceFileJob.perform_later(filename.to_s)
+
+    ParseFileJob.perform_later(filename.to_s, 'invoice')
     respond_to do |format|
       format.html {redirect_to invoices_url}
       format.js 

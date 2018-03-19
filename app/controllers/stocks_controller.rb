@@ -2,6 +2,7 @@ class StocksController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_document, only: [:show, :update, :destroy]
   before_action :set_mssql_document, only: [:destroy]
+  
   def index
     @docunemts = Stock.all
     respond_to do |format|
@@ -21,22 +22,22 @@ class StocksController < ApplicationController
   def upload_stock
     uploaded_io = params[:invoice]
     if uploaded_io.nil?
-      redirect_to stocks_url, notice: "Выберите файл"
-    return
+      redirect_to stocks_url, notice: 'Выберите файл'
+      return
     end
 
     filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
 
     File.open(filename, 'wb') do |file|
-            file.write(uploaded_io.read)
-        end
-    ParseStokFileJob.perform_later(filename.to_s)
+      file.write(uploaded_io.read)
+    end
+    
+    ParseFileJob.perform_later(filename.to_s, 'stock')
     
     respond_to do |format|
         format.html {redirect_to stocks_url}
         format.js 
     end
-
   end
 
   def show
@@ -66,7 +67,6 @@ class StocksController < ApplicationController
     # byebug
     @msdocument = KluInvoiceDoc.where(:FIS_NO => Stock.find(params[:id]).number)
     @mslines =  KluInvoiceItem.where(:FISCODE => Stock.find(params[:id]).number)
-    
   end
 
 end
