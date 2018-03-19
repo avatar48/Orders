@@ -31,12 +31,12 @@ class DataMigrator
       @product.each do |line|
         price = line.price || 0
         item = KluInvoiceItem.new
-        item.code = line.partner_code
-        item.name = line.product_name
-        item.miktar = line.quantity
-        item.birimfiyat = price
-        item.toplam = price * line.quantity
-        item.fiscode =doc.number
+        item.CODE = line.partner_code
+        item.NAME = line.product_name
+        item.MIKTAR = line.quantity
+        item.BIRIMFIYAT = price
+        item.TOPLAM = price * line.quantity
+        item.FISCODE =doc.number
         item.save!
       end
       doc.update_attribute(:send_cheker, true)
