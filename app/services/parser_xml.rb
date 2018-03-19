@@ -38,7 +38,8 @@ class ParserXml
                 seller_inn: s['ИННПродавец'],
                 saler_kpp: s['КПППродавец'],
                 buyer_inn: s['ИННПокупатель'],
-                buyer_kpp: s['КПППокупатель'])
+                buyer_kpp: s['КПППокупатель'] ,
+                partner_id: Partner.find_by(inn: s['ИННПокупатель']))
   end
 
   def new_line_items
