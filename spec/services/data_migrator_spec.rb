@@ -8,14 +8,14 @@ RSpec.describe DataMigrator, type: :model do
 
 
   it 'should create mssql' do
-    data = DataMigrator.new(doc: @invoice)
+    data = DataMigrator.new(doc: @invoice, type: :invoice)
     data.get_product_invoice
     data.send_to_mssql
     expect(KluInvoiceDoc.exists?(FIS_NO: @invoice.number)).to be true
   end
 
   it 'should be destroy from mssql' do
-    data = DataMigrator.new(doc: @invoice)
+    data = DataMigrator.new(doc: @invoice, type: :invoice)
     data.get_product_invoice
     data.send_to_mssql
     data.destroy

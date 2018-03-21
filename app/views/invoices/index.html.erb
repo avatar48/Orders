@@ -35,7 +35,6 @@
             <td><%= send_or_not(invoice.send_cheker) %></td>
             <td><%= link_to 'Показать', invoice %></td>
             <td><%= link_to "Удалить", invoice, method: :delete, data: {confirm: "Вы уверены что хотите удалить документ #{invoice.number}"} %></td>
-            <!-- <td><%= link_to "Excel", invoice_url(invoice, format: "xlsx") %></td> -->
             <td><%= link_to image_tag("send.png"), send_invoice_path(invoice), method: :post %></td>
           </tr>
         <% end %> 

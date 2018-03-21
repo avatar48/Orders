@@ -13,7 +13,7 @@ class StocksController < ApplicationController
 
   def send_stock
     @document = Stock.find(params[:format])
-    @stock = DataMigrator.new(doc: @document)
+    @stock = DataMigrator.new(doc: @document, type: :stock)
     @stock.get_product_stock
     @stock.send_to_mssql ? @message = 'Успешно отправлена' : @message = 'уже отправлена'
     redirect_to stocks_url, notice: "Перемещение #{@document.number} #{@message}"

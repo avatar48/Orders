@@ -12,7 +12,7 @@ class InvoicesController < ApplicationController
 
   def send_invoice
     @document = Invoice.find(params[:format])
-    @invoice = DataMigrator.new(doc: @document)
+    @invoice = DataMigrator.new(doc: @document, type: :invoice)
     @invoice.get_product_invoice
     @invoice.send_to_mssql ? @message = 'Успешно отправлена' : @message = 'уже отправлена'
     redirect_to invoices_url, notice: "Реализация #{@document.number} #{@message}"

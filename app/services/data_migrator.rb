@@ -2,8 +2,9 @@ class DataMigrator
 
   attr_accessor :doc
 
-  def initialize(doc:)
+  def initialize(doc:, type: type)
     @doc = doc
+    @type = type
   end
 
   # Получить документ из базы LG
@@ -24,10 +25,18 @@ class DataMigrator
     @product = @doc.invoice_line_items.group(:product_name)
   end
 
+  def create_doc(doc)
+    case @type
+    when :stock
+      KluInvoiceDoc.create(FIS_NO: doc.number, DATE: doc.date, TOPLAM: doc.sum, INN: '5263112049')
+    when :invoice
+      KluInvoiceDoc.create(:FIS_NO => doc.number, :DATE => doc.date, :TOPLAM => doc.sum, :INN => doc.buyer_inn, :KPP => doc.buyer_kpp)
+    end
+  end
   # Отправка в базу LG
   def send_to_mssql
     if !doc.send_cheker
-      a = KluInvoiceDoc.create(FIS_NO: doc.number, DATE: doc.date, TOPLAM: doc.sum, INN: '5263112049')
+      create_doc(doc)
       @product.each do |line|
         price = line.price || 0
         item = KluInvoiceItem.new
