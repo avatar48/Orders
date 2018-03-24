@@ -9,6 +9,12 @@ FactoryGirl.define do
     buyer_kpp ""
     send_cheker "false"
     partner_id "12"
+    factory :invoice_with_invoice_line_item do
+      after(:create) do |invoice, evaluator|
+        create_list(:item_plintus, 3, invoice: invoice)
+        create_list(:item_panel, 3, invoice: invoice)
+      end
+    end
   end
 end
   
