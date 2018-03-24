@@ -7,6 +7,7 @@ RSpec.describe ParserXml, type: :model do
     stock.open
     stock.read
 
+    @partner = FactoryGirl.create(:partner)
     @file_invoice = Rails.root.join('vendor/tets_invoices.xml')
     invoice = ParserXml.new(@file_invoice, Invoice)
     invoice.open
@@ -42,4 +43,9 @@ RSpec.describe ParserXml, type: :model do
     expect(Invoice.find_by(number: 'К0000000234').invoice_line_items.count).to eq 209
     expect(Invoice.find_by(number: 'К0000000235').invoice_line_items.count).to eq 10
   end
+
+  it 'shold tobe link on partner' do
+    expect(Invoice.find_by(number: 'К0000000279').partner).to eq @partner
+  end 
+
 end

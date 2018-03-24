@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :partner do
-    name "MyString"
-    inn "MyString"
-    kpp "MyString"
+    name "Иванов"
+    inn "540224269945"
+    kpp "111"
   end
 end

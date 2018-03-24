@@ -32,6 +32,7 @@ class ParserXml
   end
 
   def crete_invoice_document(s)
+    # byebug
     @document = @object.create(number: s['Номер'],
                 date: s['Дата'],
                 sum: s['СуммаДокумента'],
@@ -39,7 +40,7 @@ class ParserXml
                 saler_kpp: s['КПППродавец'],
                 buyer_inn: s['ИННПокупатель'],
                 buyer_kpp: s['КПППокупатель'] ,
-                partner_id: Partner.find_by(inn: s['ИННПокупатель']))
+                partner: Partner.find_by(inn: s['ИННПокупатель']))
   end
 
   def new_line_items
