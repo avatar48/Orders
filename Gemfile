@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'savon', '~> 2.12'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'awesome_print', '~> 1.8'
 gem 'faraday', '~> 0.12.2'

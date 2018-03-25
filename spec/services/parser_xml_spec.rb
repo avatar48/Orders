@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe ParserXml, type: :model do
   before :each do
-    @file_stock = Rails.root.join('vendor/tets_orders.xml')
-    stock = ParserXml.new(@file_stock, Stock)
+    file_stock = Rails.root.join('vendor/tets_orders.xml')
+    stock = ParserXml.new(file_stock, Stock)
     stock.open
     stock.read
 
     @partner = FactoryGirl.create(:partner)
-    @file_invoice = Rails.root.join('vendor/tets_invoices.xml')
-    invoice = ParserXml.new(@file_invoice, Invoice)
+    file_invoice = Rails.root.join('vendor/tets_invoices.xml')
+    invoice = ParserXml.new(file_invoice, Invoice)
     invoice.open
     invoice.read
   end
