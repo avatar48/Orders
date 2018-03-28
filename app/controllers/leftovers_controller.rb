@@ -5,13 +5,13 @@ class LeftoversController < ApplicationController
 		client = Savon.client(wsdl: 'http://192.168.1.25/PV/ws/ws1.1cws?wsdl', basic_auth: [ENV['USN1C'], ENV['PAS']])
 		x = client.call(:hello_baza, message: {zapros: datato1c}).to_hash
 		result = x[:hello_baza_response][:return][:НоменклатураСписка]
-	 	data = "#{params[:start_date][:day].to_i}.#{params[:start_date][:month].to_i}.#{params[:start_date][:year].to_i} 23.59.59"
+	 	data = "#{params[:start_date][:day].to_i}.#{params[:start_date][:month].to_i}.#{params[:start_date][:year].to_i} 23:59:59"
 		builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml|
 		xml.Шапка('Составил' => '', 'ДатаСоставления' => "#{Time.now.strftime('%d.%m.%y %H:%M:%S')}", "ДатаСреза" => "#{data}") {
 			xml.Склад('Наименование' => 'Склад КЛУ'){
 				result.map do |row|
 
-					xml.СтрокаНоменклатура('НоменклатураНаименование' => "#{row[:Наименование]}",'Количество' => "#{row[:Количество]}", 'ЕдиницаИзмеренияНаименование' => "#{row[:ЕдИзм]}", 'КодКонтрагента' => '#{row[:Артикул]}'){}
+					xml.СтрокаНоменклатура('НоменклатураНаименование' => "#{row[:Наименование]}",'Количество' => "#{row[:Количество]}", 'ЕдиницаИзмеренияНаименование' => "#{row[:ЕдИзм]}", 'КодКонтрагента' => "#{row[:Артикул]}"){}
 				end
 				
 			}
