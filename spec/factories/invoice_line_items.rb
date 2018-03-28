@@ -19,4 +19,3 @@ FactoryGirl.define do
     invoice
   end
 end
-  
