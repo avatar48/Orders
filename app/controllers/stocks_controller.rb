@@ -25,15 +25,11 @@ class StocksController < ApplicationController
       redirect_to stocks_url, notice: 'Выберите файл'
       return
     end
-
     filename = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
-
     File.open(filename, 'wb') do |file|
       file.write(uploaded_io.read)
     end
-    
     ParseFileJob.perform_later(filename.to_s, 'stock')
-    
     respond_to do |format|
         format.html {redirect_to stocks_url}
         format.js 
