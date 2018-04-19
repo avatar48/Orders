@@ -9,7 +9,7 @@ class DataMigrator
 
   # Получить документ из базы LG
   def lgdocument
-    @lgdocument ||= KluInvoiceDoc.find_by(FIS_NO: @doc.number, date: @doc.date)
+    @lgdocument ||= KluInvoiceDoc.where(FIS_NO: @doc.number, DATE: @doc.date)
   end
 
   def items
