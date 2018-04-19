@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @invoice = DataMigrator.new(doc: @document)
+    @invoice = DataMigrator.new(doc: @document, type: :invoice)
     @invoice.destroy
     @document.destroy
     respond_to do |format|

@@ -44,7 +44,7 @@ class StocksController < ApplicationController
   end
 
   def destroy
-    @stock = DataMigrator.new(doc: @document)
+    @stock = DataMigrator.new(doc: @document, type: :stock)
     @stock.destroy
     @document.destroy
     respond_to do |format|
