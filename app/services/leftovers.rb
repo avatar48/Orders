@@ -2,8 +2,8 @@ class Leftovers
 
   attr_reader :date
 
-  def initialize(start_date)
-    @date = Time.new(start_date[:year].to_i, start_date[:month].to_i, start_date[:day].to_i)
+  def initialize(start_date, stock_id)
+    @date = Time.parse(start_date)
   end
 
   def conect

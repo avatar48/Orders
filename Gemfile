@@ -13,7 +13,9 @@ gem 'activerecord-sqlserver-adapter'
 gem 'listen', '~> 3.0.5'
 gem 'axlsx', '~> 2.0'
 gem "axlsx_rails"
-
+gem 'foundation-datetimepicker-rails'
+gem 'foundation-datepicker-rails'
+#gem 'jquery-ui-rails'
 #gem 'foundation-rails'
 gem 'foundation-rails', '~> 5.5', '>= 5.5.3.2'
 

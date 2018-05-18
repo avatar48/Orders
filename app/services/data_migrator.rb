@@ -56,7 +56,7 @@ class DataMigrator
   end
 
   def destroy
-    lgdocument.delete if lgdocument.present?
+    lgdocument.delete_all if lgdocument.present?
     items.delete_all if items.present?
     return @lgdocument
   end
