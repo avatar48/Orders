@@ -1,17 +1,18 @@
 
 <div class="row">
-	<div class="large-12 columns">
-		<h3><small>Параметры поиска.</small></h3>
-	</div>
-		<%= form_tag(send_leftovers_path, method: "post") do %>	
-			<div class="row">	
-				    <div class="large-2 columns">
-				    <h5>Дата остатков:</h5>
-				    </div>
-				    <div class="large-5 columns select-date-wrapper">
-						<%= select_date(Date.today-1.day, {prefix: :start_date}, { :class => "select-date" }) %>
-				    </div>
+	<%= form_tag(send_leftovers_path, method: "post") do %>	
+		<div class="row">	
+			<div class="large-3 columns select-date-wrapper">
+				<%= label_tag(:start_date, "Дата остатков:") %>
+				<%= text_field_tag(:start_date, nil, autocomplete: :off) %>
 			</div>
-		  	<%= submit_tag("Отправить", class: "button" ) %>
+		</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<%= label_tag(:stock_id, "Склад:") %>
+				<%= select_tag(:stock_id, options_for_select([['Москва', 1], ['Нижний Новгород', 2]])) %>
+			</div>
+		</div>
+		  <%= submit_tag("Отправить", class: "button" ) %>
 	<% end %>
 </div>

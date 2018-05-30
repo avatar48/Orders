@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe DataMigrator, type: :model do
   before :each do
-    @invoice = FactoryGirl.create(:invoice_with_invoice_line_item)
+    @invoice = FactoryBot.create(:invoice_with_invoice_line_item)
   end
 
   it 'should create mssql' do
@@ -17,7 +17,7 @@ RSpec.describe DataMigrator, type: :model do
     data.get_product_invoice
     data.send_to_mssql
     data.destroy
-    expect(data.lgdocument.destroyed?).to be true
+    expect(data.lgdocument.reject(&:destroyed?).empty?).to be true
     expect(data.items.reject(&:destroyed?).empty?).to be true
   end
 end

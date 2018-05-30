@@ -2,13 +2,14 @@ class Leftovers
 
   attr_reader :date
 
-  def initialize(start_date)
-    @date = Time.new(start_date[:year].to_i, start_date[:month].to_i, start_date[:day].to_i)
+  def initialize(start_date, stock_id)
+    @date = Time.parse(start_date)
+    @stock_id = stock_id
   end
 
   def conect
     client = Savon.client(wsdl: ENV['WSDL'], basic_auth: [ENV['USN'], ENV['PAS']])
-    x = client.call(:get, message: {date: @date.strftime("%Y-%m-%d")}).to_hash
+    x = client.call(:get, message: {date: @date.strftime("%Y-%m-%d"),stock: @stock_id}).to_hash
     @result = x[:get_response][:return][:НоменклатураСписка]
   end
 

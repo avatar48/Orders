@@ -14,7 +14,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require "sidekiq/testing"
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 #RSpec::Sidekiq.configure do |config|
 #  config.warn_when_jobs_not_processed_by_sidekiq = false
 #end

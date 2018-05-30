@@ -13,7 +13,9 @@ gem 'activerecord-sqlserver-adapter'
 gem 'listen', '~> 3.0.5'
 gem 'axlsx', '~> 2.0'
 gem "axlsx_rails"
-
+gem 'foundation-datetimepicker-rails'
+gem 'foundation-datepicker-rails'
+#gem 'jquery-ui-rails'
 #gem 'foundation-rails'
 gem 'foundation-rails', '~> 5.5', '>= 5.5.3.2'
 
@@ -62,7 +64,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
-  gem 'factory_girl_rails', '~> 4.8'
+#  gem 'factory_girl_rails', '~> 4.8'
+  gem "factory_bot_rails"
   gem 'faker', '~> 1.8', '>= 1.8.7'
 end
 

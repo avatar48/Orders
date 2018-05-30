@@ -7,7 +7,7 @@ RSpec.describe ParserXml, type: :model do
     stock.open
     stock.read
 
-    @partner = FactoryGirl.create(:partner)
+    @partner = FactoryBot.create(:partner)
     file_invoice = Rails.root.join('vendor/tets_invoices.xml')
     invoice = ParserXml.new(file_invoice, Invoice)
     invoice.open
