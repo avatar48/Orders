@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :partner do
     name "Иванов"
     inn "540224269945"

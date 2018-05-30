@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :item_plintus, class: InvoiceLineItem do
     product_name "Плинтус"
     product_code "x2-3"

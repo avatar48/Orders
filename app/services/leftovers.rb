@@ -4,11 +4,12 @@ class Leftovers
 
   def initialize(start_date, stock_id)
     @date = Time.parse(start_date)
+    @stock_id = stock_id
   end
 
   def conect
     client = Savon.client(wsdl: ENV['WSDL'], basic_auth: [ENV['USN'], ENV['PAS']])
-    x = client.call(:get, message: {date: @date.strftime("%Y-%m-%d")}).to_hash
+    x = client.call(:get, message: {date: @date.strftime("%Y-%m-%d"),stock: @stock_id}).to_hash
     @result = x[:get_response][:return][:НоменклатураСписка]
   end
 

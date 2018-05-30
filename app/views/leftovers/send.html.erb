@@ -4,7 +4,7 @@
 		<div class="row">	
 			<div class="large-3 columns select-date-wrapper">
 				<%= label_tag(:start_date, "Дата остатков:") %>
-				<%= text_field_tag(:start_date) %>
+				<%= text_field_tag(:start_date, nil, autocomplete: :off) %>
 			</div>
 		</div>
 		<div class="row">

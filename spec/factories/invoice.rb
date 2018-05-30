@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :invoice do
     number {Faker::Code.ean}
     date {Faker::Time.backward(14, :all).strftime("%d.%m.%Y %H:%m:%S")}
