@@ -1,2 +1,5 @@
-
-$('#show_list').html("<%= escape_javascript (render partial: 'progres', locals: { progress: @progress }) %>"); 
+(function() {
+    var progressBar = new ProgressBar("#demo", "<%= stocks_path @progress_bar %>");
+    progressBar.start();
+    alert("ssss");
+})();

@@ -1,10 +1,13 @@
-<% content_for :sidebar do %>
-  <%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
-  	<%= file_field_tag 'invoice' %>
-  	<%= submit_tag("Прочитать", class: "button tiny radius" ) %>
-  <% end %>
-<% end %>
+<p><a data-open="exampleModal1">Загрузить</a></p>
 
+<div class="reveal" id="exampleModal1" data-reveal>
+  <%= render 'download' %>
+  <%#= link_to 'close button', '#', :onclick => "$(exampleModal1).foundation('close');", class: "button" %>
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
     <table class="display responsive no-wrap" cellspacing="0" cellpadding="5" border="1" align="center" id="table_invoice" >
       <thead>

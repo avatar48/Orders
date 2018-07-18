@@ -17,10 +17,13 @@ gem 'foundation-datetimepicker-rails'
 gem 'foundation-datepicker-rails'
 #gem 'jquery-ui-rails'
 #gem 'foundation-rails'
-gem 'foundation-rails', '~> 5.5', '>= 5.5.3.2'
+gem 'momentjs-rails'
 
+gem 'foundation-rails'
+gem 'autoprefixer-rails'
+gem 'sidekiq-status'
 gem 'nokogiri', '~> 1.7', '>= 1.7.1'
-
+gem 'jquery-turbolinks', '~> 2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

@@ -29,10 +29,10 @@ class StocksController < ApplicationController
     File.open(filename, 'wb') do |file|
       file.write(uploaded_io.read)
     end
-    ParseFileJob.perform_later(filename.to_s, 'stock')
+    ParseFileJob.perform_async(filename.to_s, 'stock')
     respond_to do |format|
         format.html {redirect_to stocks_url}
-        format.js 
+        format.js
     end
   end
 
@@ -51,6 +51,15 @@ class StocksController < ApplicationController
       format.html { redirect_to stocks_url, notice: "Документ #{@document.number} удален." }
       format.json { head :no_content }
     end    
+  end
+
+  def fetch
+    job_id = params[:job_id]
+    Sidekiq::Status::pct_complete (job_id)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   private

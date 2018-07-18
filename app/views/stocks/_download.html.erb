@@ -1,0 +1,5 @@
+
+<%= form_tag({:action => :upload_stock}, :multipart => true, :remote => true, :authenticity_token => true ) do %>
+  <%= file_field_tag 'invoice' %>
+  <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
+<% end %>

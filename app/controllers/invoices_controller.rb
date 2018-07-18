@@ -31,7 +31,7 @@ class InvoicesController < ApplicationController
   	  file.write(uploaded_io.read)
     end
 
-    ParseFileJob.perform_later(filename.to_s, 'invoice')
+    ParseFileJob.perform_async(filename.to_s, 'invoice')
     respond_to do |format|
       format.html {redirect_to invoices_url}
       format.js 

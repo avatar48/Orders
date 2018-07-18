@@ -8,6 +8,7 @@ class ParserXml
 
   def open
     @doc = File.open(@file) { |f| Nokogiri::XML(f) }
+    @doc.xpath("//Документ").count
   end
 
   def read 

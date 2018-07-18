@@ -1,16 +1,19 @@
 
-<% content_for :sidebar do %>
+<p><a data-open="exampleModal1">Загрузить</a></p>
 
-    <%= form_tag({:action => :upload_stock}, :multipart => true) do %>
-    <%= file_field_tag 'invoice' %>
-    <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
-    <% end %>
-<% end %>
+<div class="reveal" id="exampleModal1" data-reveal>
+  <%= render 'download' %>
+  <%#= link_to 'close button', '#', :onclick => "$(exampleModal1).foundation('close');", class: "button" %>
+
+  <button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
     <table class="display responsive no-wrap" cellspacing="0" cellpadding="5" border="1" align="center", id="table_stock">
       <thead>
           <tr>
-          <th>Дата</th>          
+          <th>Дата</th>
           <th>Номер</th>
           <th>Сумма</th>
           <th>Статус</th>
@@ -27,8 +30,8 @@
             <td><%= docunemt.sum %></td>
             <td><%= send_or_not(docunemt.send_cheker) %></td>
             <td><%= link_to 'Показать', docunemt %></td>
-            <td><%= link_to "Удалить", docunemt, method: :delete, data: {confirm: "Вы уверены что хотите удалить документ перемещение #{docunemt.number}"} %></td>
-            <td><%= link_to image_tag("send.png"), send_stock_path(docunemt), method: :post %></td>
+            <td><%= link_to 'Удалить', docunemt, method: :delete, data: {confirm: "Вы уверены что хотите удалить документ перемещение #{docunemt.number}"} %></td>
+            <td><%= link_to image_tag('send.png'), send_stock_path(docunemt), method: :post %></td>
           </tr>
         <% end %> 
       </tbody>

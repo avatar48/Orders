@@ -1,0 +1,4 @@
+<%= form_tag({:action => :upload_invoice}, :multipart => true ) do %>
+  <%= file_field_tag 'invoice' %>
+  <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
+<% end %>

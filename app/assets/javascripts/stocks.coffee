@@ -2,12 +2,17 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
+  $.fn.dataTable.moment( 'DD.MM.YYYY' )
   $('#table_stock').dataTable
     responsive: true
-    'aoColumnDefs': [ {
+    "aaSorting": []
+    "order": []
+    'aoColumnDefs': [
+      {
         'bSortable': false
-        'aTargets': [ 4, 5, 6 ]
-    } ]
+        'aTargets': [4, 5, 6 ]
+      }
+    ]
     'language':
         'lengthMenu': 'Количество строк _MENU_'
         'search': 'Поиск:'

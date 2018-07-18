@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Orders" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Orders" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-    <%# Modernizr is required for Zurb Foundation %>
-    <%= javascript_include_tag 'vendor/modernizr' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Orders KLU" %></title>
+    <%= favicon_link_tag %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%#= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" %>
+    <%= javascript_include_tag "//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js" %>
+<!--    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"  />-->
+<!--    <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js}" />-->
     <%= csrf_meta_tags %>
   </head>
+
   <body>
+  <nav class="hover-underline-menu" data-menu-underline-from-center>
+    <ul class="menu align-center">
+      <li class="name"><%= link_to 'Заказы на перемещение', stocks_path %></li>
+      <li class="name"><%= link_to 'Заявки на реализацию', invoices_path %></li>
+      <li class="name"><%= link_to 'Сверка остатков', leftovers_send_path %></li>
+      <li class="name"><%= link_to 'Контрагенты', partners_path %></li>
+    </ul>
+  </nav>
+<br>
+  <div class="row">
+    <%= yield %>
+  </div>
 
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-
-    <br>
-
-    <section role="main" class="scroll-container">
-      <div class="row">
-        <div class="large-9 medium-8 columns">
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-        </div>
-        <div class="large-3 medium-4 columns">
-          <%= yield :sidebar %>
-        </div>
-      </div>
-    </section>
-
-
-
+  <footer>
+    <label>2018</label>
+  </footer>
   </body>
 </html>
