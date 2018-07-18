@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
  #$(document).on "ready page:change", -> $('#example').DataTable responsive: true
-$(document).on "turbolinks:load", ->
+$(document).ready ->
   $.fn.dataTable.moment( 'DD.MM.YYYY' )
   $('#table_invoice').dataTable
     responsive: true

@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on "turbolinks:load", ->
+$(document).ready ->
   $('#start_date').fdatepicker
     format: 'dd-mm-yyyy'
     disableDblClickSelection: true

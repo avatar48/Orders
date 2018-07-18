@@ -6,7 +6,7 @@ $ ->
     window.location = this.dataset.link
 
 
-$(document).on "turbolinks:load", ->
+$(document).ready ->
   $('#table_partner tr:not(.first_tr)').hover (->
     $(this).addClass 'hover_color'
     return

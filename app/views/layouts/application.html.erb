@@ -3,15 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= content_for?(:title) ? yield(:title) : "Orders KLU" %></title>
     <%= favicon_link_tag %>
+    <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%#= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" %>
     <%= javascript_include_tag "//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js" %>
-<!--    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"  />-->
-<!--    <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js}" />-->
     <%= csrf_meta_tags %>
   </head>
 

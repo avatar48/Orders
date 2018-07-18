@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require foundation-datetimepicker
 //= require foundation-datepicker
@@ -20,11 +19,10 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require moment
-//= require turbolinks
 //= require_tree .
 
 $(function() {
-    $(document).on('turbolinks:load', function() {
+    $(document).on('ready page:load', function() {
         $(function(){ $(document).foundation(); });
         $("[data-menu-underline-from-center] a").addClass("underline-from-center");
     });
