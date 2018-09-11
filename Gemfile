@@ -19,6 +19,8 @@ gem 'foundation-datepicker-rails'
 #gem 'foundation-rails'
 gem 'momentjs-rails'
 
+gem 'remotipart', '~> 1.4', '>= 1.4.2'
+
 gem 'foundation-rails'
 gem 'autoprefixer-rails'
 gem 'sidekiq-status'

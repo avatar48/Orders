@@ -1,5 +1,7 @@
-
-<%= form_tag({:action => :upload_stock}, :multipart => true, :remote => true, :authenticity_token => true ) do %>
+<%= form_tag(upload_invoice_path, remote: true, :authenticity_token => true, method: :post ) do %>
   <%= file_field_tag 'invoice' %>
-  <%= submit_tag("Прочитать", class: "button tiny radius" ) %>
+  <%= submit_tag("Прочитать", class: "button tiny radius", id: 'read' ) %>
+  <div class="progress" role="progressbar" tabindex="0" aria-valuenow="25" aria-valuemin="0" aria-valuetext="25 percent" aria-valuemax="100">
+    <div class="progress-meter" style="width: 0%"></div>
+  </div>
 <% end %>

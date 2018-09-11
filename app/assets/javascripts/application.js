@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require foundation-datetimepicker
 //= require foundation-datepicker
 //= require locales/foundation-datepicker.ru

@@ -10,6 +10,7 @@ class ParseFileJob
     model = MODEL[key]
     stock = ParserXml.new(path, model)
     stock.open
+    at 50
     stock.read
     at 100
     store  vino: 'veritas'

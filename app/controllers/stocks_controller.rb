@@ -31,7 +31,6 @@ class StocksController < ApplicationController
     end
     ParseFileJob.perform_async(filename.to_s, 'stock')
     respond_to do |format|
-        format.html {redirect_to stocks_url}
         format.js
     end
   end
