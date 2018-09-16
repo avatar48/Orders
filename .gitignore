@@ -24,3 +24,8 @@ config/deploy.rb
 .env
 .DS_Store
 .idea/*
+.vscode/*
+.DS_Store
+app/.DS_Store
+app/assets/.DS_Store
+app/assets/stylesheets/browserslist

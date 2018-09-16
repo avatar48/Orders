@@ -2,11 +2,17 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+    $('#table_invoice').click( function () {
+            $('#read').disabled = false;
+        });
 $(document).ready( function () {
 
-    document.querySelector("span").addEventListener("click", function () {
-        document.querySelector("#read").disabled = false;
-    });
+    // document.querySelector("span").addEventListener("click", function () {
+    //     document.querySelector("#read").disabled = false;
+    // });
+    // document.querySelector("#close_modal").addEventListener("click", function () {
+    //     document.querySelector("#read").disabled = false;
+    // });
 
     $('#table_invoice').DataTable({
         responsive: true,
